@@ -56,6 +56,9 @@ $(OBJ_DIR)/%.o:$(BASE_DIR)/muduo/net/%.cc
 
 $(OBJ_DIR)/%.o:$(BASE_DIR)/muduo/net/poller/%.cc
 	$(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $(INC) -c $<
+	
+$(OBJ_DIR)/%.o:$(BASE_DIR)/muduo/net/http/%.cc
+        $(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $(INC) -c $<	
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.cc
 	$(CXX) $(CXXFLAGS) $(CXX_MACRO) -o $@ $(INC) -c $<
@@ -67,7 +70,7 @@ $(LIB_DIR)/libmuduo.a:$(addprefix $(OBJ_DIR)/, \
 	InetAddress.o TcpConnection.o TimerQueue.o Channel.o Socket.o \
 	Poller.o DefaultPoller.o Acceptor.o EventLoopThreadPool.o SocketsOps.o \
 	Timer.o PollPoller.o EPollPoller.o EventLoopThread.o Buffer.o \
-	TcpClient.o Connector.o)
+	TcpClient.o Connector.o HttpResponse.o HttpServer.o HttpContext.o)
 	$(AR) $(AR_FLAGS) $@ $^
 
 $(BIN_DIR)/Channel_test:$(addprefix $(OBJ_DIR)/, Channel_test.o)
